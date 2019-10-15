@@ -18,10 +18,10 @@ public class camera : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X");//horizontal mouse velocity
         float mouseY = Input.GetAxis("Mouse Y");//vertival mouse velocity
 
-        transform.parent.Rotate(/*-mouseY * 10f*/0, mouseX * 1f, 0f);//rotate the parent of camera which is the cube
+        transform.parent.Rotate(/*-mouseY * 10f*/0, mouseX * 5f, 0f);//rotate the parent of camera which is the cube
 
         //float verticalAngle = transform.localEulerAngles.x;
-        verticalAngle -= mouseY * 0.5f;
+        verticalAngle -= mouseY * 1f;
         verticalAngle = Mathf.Clamp(verticalAngle, -80f, 80f);
 
         //X = pitch, Y = Yaw, Z = Roll..set z = to unroll the camera
