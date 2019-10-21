@@ -6,10 +6,12 @@ public class camera : MonoBehaviour
 {
     float verticalAngle = 0f;
 
+   
+
     // Start is called before the first frame update
     void Start()
     {
-
+      
     }
 
     // Update is called once per frame
@@ -27,4 +29,6 @@ public class camera : MonoBehaviour
         //X = pitch, Y = Yaw, Z = Roll..set z = to unroll the camera
         transform.localEulerAngles = new Vector3(verticalAngle, transform.localEulerAngles.y, 0f);
     }
+
+   
 }

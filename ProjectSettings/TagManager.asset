@@ -15,7 +15,7 @@ TagManager:
   - 
   - pushable object
   - groundTigger
-  - 
+  - cursor
   - 
   - 
   - 
@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: cursor
+    uniqueID: 3451544767
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

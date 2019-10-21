@@ -8,12 +8,15 @@ using UnityEngine.SceneManagement;
 public class groundTrigger : MonoBehaviour
 {
     public int score = 0;
-    public float timer = 60;
+    public float timer = 120;
 
     public TextMeshProUGUI scoretxt;
     public TextMeshProUGUI timertxt;
 
     static public groundTrigger me;
+
+    public AudioSource falling;
+    public List<AudioClip> audios = new List<AudioClip>();
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +35,9 @@ public class groundTrigger : MonoBehaviour
         {
             SceneManager.LoadScene("end");
         }
+
+        
+
         
     }
 
@@ -39,5 +45,9 @@ public class groundTrigger : MonoBehaviour
     {
         Debug.Log("objectsonground");
         score += 100;
+
+        falling.clip = audios[Random.Range(0, 3)];
+        falling.Play();
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,9 @@ public class move : MonoBehaviour
     public bool onFloor;
     public bool canjump = true;
 
+    public bool jumping = false;
+
+   
    
     // Start is called before the first frame update
     void Start()
@@ -22,6 +26,9 @@ public class move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = true;
+
         float horizontal = Input.GetAxis("Horizontal");//a/d or left/right
         float vertical = Input.GetAxis("Vertical");//w/s or up/down
 
@@ -30,7 +37,7 @@ public class move : MonoBehaviour
         myInput = vertical * transform.forward;
         myInput += horizontal * transform.right;
 
-        myInput.y = catRB.velocity.y / 10;
+        myInput.y = catRB.velocity.y/6;
 
         Ray jumpRay = new Ray(transform.position, Vector3.down);
         Ray pushRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -60,20 +67,20 @@ public class move : MonoBehaviour
            
                 if (Input.GetMouseButton(0))
                 {
-                    if(Mathf.Abs(pushTransform.z - catTransform.z) >= 1f)
+                    if(Mathf.Abs(pushTransform.z - catTransform.z) > 1f)
                     {
-                        pushHit.rigidbody.AddForce(new Vector3(0, 0, (pushTransform.z - catTransform.z)) * 50f);
+                        pushHit.rigidbody.AddForce(new Vector3(0, 0, (pushTransform.z - catTransform.z)) * 200f);
                     }
 
                     if(Mathf.Abs(pushTransform.z - catTransform.z) <= 1f)
                     {
                         if(pushTransform.x > catTransform.x)
                         {
-                            pushHit.rigidbody.AddForce(Vector3.right * 70f);
+                            pushHit.rigidbody.AddForce(Vector3.right * 150f);
                         }
                         else
                         {
-                            pushHit.rigidbody.AddForce(Vector3.left * 70f);
+                            pushHit.rigidbody.AddForce(Vector3.left * 150f);
                         }
 
 
@@ -95,7 +102,6 @@ public class move : MonoBehaviour
         {
             onFloor = false;
             canjump = false;
-         
         }
 
         if (onFloor)
@@ -103,21 +109,45 @@ public class move : MonoBehaviour
             canjump = true;
         }
 
+        if (canjump == true)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                jumping = true;
+                Debug.Log("jumping");
+
+                
+            }
+            else
+                jumping = false;
+
+        }
+
+        if(canjump == false)
+        {
+            jumping = false;
+        }
     }
     private void FixedUpdate()
     {
-        catRB.velocity = myInput * 10f;
-
-        if(canjump == true)
+        if (jumping)
         {
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                Debug.Log("jumping");
-                catRB.velocity = catRB.velocity + Vector3.up * jumpforce;
-            }
+            Debug.Log("addforce");
+            catRB.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
+            
         }
 
+        catRB.velocity = myInput * 6f;
         
 
+
+
     }
+    
+
+
+
+   
+
+   
 }
