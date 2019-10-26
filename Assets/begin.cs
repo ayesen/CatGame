@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class begin : MonoBehaviour
 {
-    public AudioSource cataudio;
-    public List <AudioClip> audioClips = new List<AudioClip>();
+    
     
 
     // Start is called before the first frame update
@@ -21,8 +20,7 @@ public class begin : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            cataudio.clip = audioClips[Random.Range(0, 3)];
-            cataudio.PlayOneShot(cataudio.clip);
+            
             SceneManager.LoadScene("play");
             
         }

@@ -2247,8 +2247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7339e5d16d2753d4eab77d07ea9ca3c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cataudio: {fileID: 0}
-  audioClips: []
 --- !u!1 &1148414783
 GameObject:
   m_ObjectHideFlags: 0
@@ -3102,8 +3100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7339e5d16d2753d4eab77d07ea9ca3c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cataudio: {fileID: 0}
-  audioClips: []
 --- !u!65 &1482079624
 BoxCollider:
   m_ObjectHideFlags: 0
